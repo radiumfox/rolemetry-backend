@@ -1,21 +1,17 @@
 import { mapError } from '@/lib/errors/mapper.js';
 import { getQueries } from '@/lib/db/queries.js';
 import { type Request, type Response } from 'express';
-import { ANALYSES_TABLE_NAME, ANALYSIS_ALLOWED_FIELDS } from './config.js';
-import {
-  CreateAnalysisInput,
-  DeleteAnalysisByIdInput,
-  GetAnalysisByIdInput
-} from '@/modules/analysis/analysis.schemas.js';
+import { RESUME_ALLOWED_FIELDS, RESUMES_TABLE_NAME } from './config.js';
+import { CreateResumeInput, DeleteResumeByIdInput, GetResumeByIdInput } from '@/modules/resume/resume.schemas.js';
 
 const {
   getAll,
   getSingleById,
   addSingle,
   deleteSingleById
-} = getQueries(ANALYSES_TABLE_NAME);
+} = getQueries(RESUMES_TABLE_NAME);
 
-export const getAnalyses = function (req: Request, res: Response) {
+export const getResumes = function (req: Request, res: Response) {
   getAll((error, result) => {
     if (error) {
       const { status, code, message } = mapError(error);
@@ -27,8 +23,7 @@ export const getAnalyses = function (req: Request, res: Response) {
   });
 };
 
-
-export const getAnalysisById = function (req: Request<GetAnalysisByIdInput>, res: Response) {
+export const getResumeById = function (req: Request<GetResumeByIdInput>, res: Response) {
   const id = req.params.id;
 
   getSingleById(id, (error, result) => {
@@ -42,18 +37,15 @@ export const getAnalysisById = function (req: Request<GetAnalysisByIdInput>, res
   });
 };
 
-export const createAnalysis = function (req: Request<object, object, CreateAnalysisInput>, res: Response) {
+export const createResume = function (req: Request<object, object, CreateResumeInput>, res: Response) {
   const id = req.body.id;
-  const resume_id = req.body.resume_id;
-  const job_posting_id = req.body.job_posting_id;
-  const score = req.body.score;
-  const breakdown = req.body.breakdown;
-  const suggestions = req.body.suggestions;
+  const file_name = req.body.file_name;
+  const extracted_text = req.body.extracted_text;
   const created_at = req.body.created_at;
 
   addSingle(
-    ANALYSIS_ALLOWED_FIELDS,
-    [id, resume_id, job_posting_id, score, breakdown, suggestions, created_at],
+    RESUME_ALLOWED_FIELDS,
+    [id, file_name, extracted_text, created_at],
     (error, result) => {
       if (error) {
         const { status, code, message } = mapError(error);
@@ -66,7 +58,8 @@ export const createAnalysis = function (req: Request<object, object, CreateAnaly
   );
 };
 
-export const deleteAnalysisById = function (req: Request<DeleteAnalysisByIdInput>, res: Response) {
+
+export const deleteResumeById = function (req: Request<DeleteResumeByIdInput>, res: Response) {
   const id = req.params.id;
 
   deleteSingleById(id, (error, deleted) => {

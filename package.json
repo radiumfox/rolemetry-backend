@@ -14,7 +14,8 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "migrate": "node-pg-migrate"
   },
   "dependencies": {
     "cors": "2.8.6",
@@ -42,6 +43,7 @@
     "@types/swagger-ui-express": "4.1.8",
     "dotenv": "18.0.1",
     "eslint": "10.11.0",
+    "node-pg-migrate": "9.0.0",
     "supertest": "7.2.2",
     "tsc-alias": "1.9.5",
     "tsx": "4.23.15",

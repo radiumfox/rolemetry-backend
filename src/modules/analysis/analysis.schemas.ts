@@ -2,9 +2,8 @@ import { z } from 'zod';
 
 export const createAnalysisSchema = z.object({
   id: z.uuid(),
-  file_name: z.string(),
-  extracted_text: z.string(),
-  job_description: z.string().optional(),
+  resume_id: z.uuid(),
+  job_posting_id: z.uuid(),
   score: z.int().min(0).max(100),
   breakdown: z.json(),
   suggestions: z.array(z.string()),

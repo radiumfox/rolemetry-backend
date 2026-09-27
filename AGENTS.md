@@ -16,7 +16,6 @@ This is an Express.js application featuring AI-powered ATS score calculation for
 - TypeScript strict mode;
 - Use `interfaces` instead of `types` where possible;
 - Put type/interface definitions in a dedicated `types.ts` co-located with the related code;
-- Use an `index.ts` in each folder to re-export all definitions and variables;
 - Use only named exports.
 
 Do not use the following features:
