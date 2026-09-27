@@ -44,9 +44,8 @@ export const getAnalysisById = function (req: Request<GetAnalysisByIdInput>, res
 
 export const createAnalysis = function (req: Request<object, object, CreateAnalysisInput>, res: Response) {
   const id = req.body.id;
-  const file_name = req.body.file_name;
-  const extracted_text = req.body.extracted_text;
-  const job_description = req.body.job_description;
+  const resume_id = req.body.resume_id;
+  const job_posting_id = req.body.job_posting_id;
   const score = req.body.score;
   const breakdown = req.body.breakdown;
   const suggestions = req.body.suggestions;
@@ -54,7 +53,7 @@ export const createAnalysis = function (req: Request<object, object, CreateAnaly
 
   addSingle(
     ANALYSIS_ALLOWED_FIELDS,
-    [id, file_name, extracted_text, job_description, score, breakdown, suggestions, created_at],
+    [id, resume_id, job_posting_id, score, breakdown, suggestions, created_at],
     (error, result) => {
       if (error) {
         const { status, code, message } = mapError(error);

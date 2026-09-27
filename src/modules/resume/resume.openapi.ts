@@ -19,6 +19,10 @@
  *           example: cv.pdf
  *         extracted_text:
  *           type: string
+ *         created_at:
+ *           type: string
+ *           format: date-time
+ *           example: '2020-01-01T04:15:00Z'
  *     CreateResumeRequest:
  *       allOf:
  *         - $ref: '#/components/schemas/Resume'

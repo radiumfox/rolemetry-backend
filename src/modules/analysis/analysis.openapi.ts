@@ -6,8 +6,8 @@
  *       type: object
  *       required:
  *         - id
- *         - file_name
- *         - extracted_text
+ *         - resume_id
+ *         - job_posting_id
  *         - score
  *         - breakdown
  *         - suggestions
@@ -17,13 +17,14 @@
  *           type: string
  *           format: uuid
  *           example: 77d1147d-36dc-4d5a-b167-9ad8cf5ee107
- *         file_name:
+ *         resume_id:
  *           type: string
- *           example: cv.pdf
- *         extracted_text:
+ *           format: uuid
+ *           example: 3f8c1e52-0b7d-4a91-8c6e-1d2f5b7a9e30
+ *         job_posting_id:
  *           type: string
- *         job_description:
- *           type: string
+ *           format: uuid
+ *           example: b6d9a4c1-52e8-4f3b-9a70-8c1e2d3f4b5a
  *         score:
  *           type: integer
  *           minimum: 0
