@@ -1,5 +1,10 @@
 import express from 'express';
-import { createAnalysis, deleteAnalysis, getAnalyses, getAnalysisById } from '@/modules/analysis/analysis.controllers.js';
+import {
+  createAnalysis,
+  deleteAnalysisById,
+  getAnalyses,
+  getAnalysisById
+} from '@/modules/analysis/analysis.controllers.js';
 import { validateBody } from '@/lib/validation/validateBody.js';
 import {
   createAnalysisSchema,
@@ -108,5 +113,5 @@ analysisRouter.post('/', validateBody(createAnalysisSchema), createAnalysis);
  *       default:
  *         $ref: '#/components/responses/ApiError'
  */
-analysisRouter.delete('/:id', validateParams(deleteAnalysisByIdSchema), deleteAnalysis);
+analysisRouter.delete('/:id', validateParams(deleteAnalysisByIdSchema), deleteAnalysisById);
 

@@ -1,6 +1,6 @@
-
 import { API_PREFIX } from './config/constants.js';
-import { analysisRouter } from '@/modules/analysis/index.js';
+import { analysisRouter } from '@/modules/analysis/analysis.routes.js';
+import { resumeRouter } from '@/modules/resume/resume.routes.js';
 import cors from 'cors';
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
@@ -38,3 +38,4 @@ app.use(
 );
 
 app.use(`${API_PREFIX}/analyses`, analysisRouter);
+app.use(`${API_PREFIX}/resumes`, resumeRouter);
