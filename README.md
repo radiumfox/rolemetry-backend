@@ -10,11 +10,12 @@ Built with Express 5, TypeScript, Pg-Promise, and PostgreSQL.
 
 ```bash
 pnpm install
-docker compose up -d        # start Postgres
-pnpm dev                    # run the app in watch mode
+docker compose up -d
+pnpm migrate up
+pnpm dev
 ```
 
-Requires a `.env` file with a `DATABASE_URL` pointing at the running Postgres.
+Requires a `.env` file with `DATABASE_URL=postgresql://postgres:postgres@localhost:5432/rolemetry` for local development.
 
 ## Database
 
@@ -37,3 +38,17 @@ To stop and remove the container **and** its data volume:
 ```bash
 docker compose down -v
 ```
+
+## Production with Supabase
+
+`docker-compose.yml` is for local development only. In production, provide configuration through deployment environment variables and keep production credentials out of the repository.
+
+For this low-traffic app, use one Supabase direct connection for both the app and migrations:
+
+```text
+DATABASE_URL="postgresql://postgres:<url-encoded-password>@db.<project-ref>.supabase.co:5432/postgres?sslmode=require"
+```
+
+- URL-encode the database password inside `DATABASE_URL`; for example, `@` becomes `%40`.
+- Set `NODE_ENV=production`. SSL is enabled automatically in production.
+- Run `pnpm migrate up` once before starting the new app version; do not run migrations from every app instance.
