@@ -8,6 +8,5 @@ if(!env.DATABASE_URL) {
 const pg = pgPromise();
 
 export const db = pg({
-  connectionString: env.DATABASE_URL,
-  ssl: env.NODE_ENV === 'production'
+  connectionString: env.DATABASE_URL
 });
