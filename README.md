@@ -50,5 +50,5 @@ DATABASE_URL="postgresql://postgres:<url-encoded-password>@db.<project-ref>.supa
 ```
 
 - URL-encode the database password inside `DATABASE_URL`; for example, `@` becomes `%40`.
-- Set `NODE_ENV=production`. SSL is enabled automatically in production.
+- Set `NODE_ENV=production`. SSL is controlled by `sslmode` in `DATABASE_URL`; use `verify-full` for certificate verification, or `uselibpqcompat=true&sslmode=require` for libpq-style `require`.
 - Run `pnpm migrate up` once before starting the new app version; do not run migrations from every app instance.
